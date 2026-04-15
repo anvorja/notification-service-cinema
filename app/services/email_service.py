@@ -2,6 +2,8 @@
 #
 # Versión desacoplada del email_service del monolito.
 # Trabaja con dicts planos del evento Kafka — sin modelos SQLAlchemy ni acceso a BD.
+import base64
+import io
 import logging
 import os
 from datetime import date, datetime, timezone
@@ -9,6 +11,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 import aiosmtplib
+import qrcode
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from zoneinfo import ZoneInfo
 
@@ -23,6 +26,23 @@ _template_env = Environment(
     loader=FileSystemLoader(TEMPLATE_DIR),
     autoescape=select_autoescape(["html", "xml"]),
 )
+
+
+def _generate_qr_base64(data: str) -> str:
+    """Generates a QR code PNG and returns it as a base64 data URI for inline email embedding."""
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_M,
+        box_size=6,
+        border=2,
+    )
+    qr.add_data(data)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="black", back_color="white")
+    buffer = io.BytesIO()
+    img.save(buffer, format="PNG")
+    encoded = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    return f"data:image/png;base64,{encoded}"
 
 
 def _format_currency(amount: float) -> str:
@@ -178,6 +198,16 @@ async def send_purchase_confirmation(event: dict) -> bool:
             [t.get("code") for t in tickets],
         )
 
+        # Generate inline QR codes (base64 PNG) for each ticket so they render
+        # in every email client without depending on an external image API.
+        tickets_with_qr = []
+        for t in tickets:
+            qr_data = f"{t.get('code')}|{t.get('seat', '')}"
+            tickets_with_qr.append({
+                **t,
+                "qr_image": _generate_qr_base64(qr_data),
+            })
+
         template_data = {
             "customer_name": event.get("customer_name", "Cliente"),
             "movie_title": event.get("movie_title", "N/A"),
@@ -197,7 +227,7 @@ async def send_purchase_confirmation(event: dict) -> bool:
             "quantity": event.get("quantity"),
             "total_amount": _format_currency(event.get("total_amount", 0)),
             "status": "CONFIRMADO",
-            "tickets": tickets,
+            "tickets": tickets_with_qr,
             "payment_last_four": event.get("payment_last_four", "****"),
             "transaction_id": event.get("transaction_id", "N/A"),
             "support_email": settings.SUPPORT_EMAIL,
