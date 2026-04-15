@@ -284,9 +284,9 @@
                             </div>
                         </td>
                         <td style="padding: 12px; text-align: center; vertical-align: middle; width: 116px;">
-                            <img src="{{ ticket.qr_image }}"
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data={{ ticket.code }}"
                                  alt="QR {{ ticket.code }}"
-                                 width="120" height="120"
+                                 width="100" height="100"
                                  style="display: block; margin: 0 auto; border: 2px solid #ddd; border-radius: 6px; max-width: 100%;">
                         </td>
                     </tr>
