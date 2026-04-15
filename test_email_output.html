@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Compra - Cinema Tickets</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .content {
+            padding: 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            color: #2575fc;
+            margin-bottom: 20px;
+        }
+        .details {
+            background-color: #f8f9ff;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid #2575fc;
+        }
+        .details h2 {
+            color: #2575fc;
+            margin-top: 0;
+            font-size: 20px;
+        }
+        .detail-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        .detail-label {
+            font-weight: bold;
+            width: 140px;
+            color: #555;
+        }
+        .detail-value {
+            color: #333;
+        }
+        .movie-info {
+            background: linear-gradient(45deg, #f0f0f0, #ffffff);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #e0e0e0;
+        }
+        .showtime-info {
+            background: linear-gradient(45deg, #e8f5e8, #ffffff);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #c8e6c9;
+            border-left: 4px solid #4caf50;
+        }
+        .showtime-info h3 {
+            color: #2e7d32;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .tickets-section {
+            background-color: #f8f9ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px dashed #2575fc;
+        }
+        .ticket-item {
+            background-color: white;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        .ticket-item table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .ticket-code {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #2575fc;
+            font-size: 16px;
+        }
+        .payment-info {
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #2575fc;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 25px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #2575fc;
+            text-decoration: none;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+        }
+        .highlight {
+            background-color: #fff8dc;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #ffa500;
+            margin: 20px 0;
+        }
+        .status-confirmed {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .price-total {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2575fc;
+        }
+        .theater-highlight {
+            background-color: #4caf50;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .datetime-highlight {
+            background-color: #ff9800;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">🎬 CINEMA TICKETS</div>
+        <h1>¡Tu entrada está confirmada!</h1>
+    </div>
+
+    <div class="content">
+        <div class="greeting">
+            ¡Hola Andrés (Test)!
+        </div>
+
+        <p>¡Gracias por tu compra! Tu reserva para la película ha sido <span class="status-confirmed">CONFIRMADA</span>. A continuación encontrarás los detalles de tu función.</p>
+
+        <div class="movie-info">
+            <h2>🎬 Información de la Película</h2>
+            <div class="detail-item">
+                <span class="detail-label">Película:</span>
+                <span class="detail-value"><strong>Película de Prueba</strong></span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Género:</span>
+                <span class="detail-value">Acción</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Duración:</span>
+                <span class="detail-value">120 minutos</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Clasificación:</span>
+                <span class="detail-value">PG-13</span>
+            </div>
+        </div>
+
+        <!-- NUEVA SECCIÓN: Información de la función -->
+        <div class="showtime-info">
+            <h3>📍 Información de la sala</h3>
+            <div class="detail-item">
+                <span class="detail-label">Teatro:</span>
+                <span class="detail-value">Cine Colombia Centro</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Fecha:</span>
+                <span class="detail-value">
+                        <strong>25/12/2025</strong>
+                    </span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Horario:</span>
+                <span class="detail-value">20:00</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Formato:</span>
+                <span class="detail-value">2D</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Ubicación:</span>
+                <span class="detail-value">Bogotá, Colombia</span>
+            </div>
+        </div>
+
+        <div class="details">
+            <h2>📋 Detalles de tu Compra</h2>
+            <div class="detail-item">
+                <span class="detail-label">Orden:</span>
+                <span class="detail-value">No. 999</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Fecha:</span>
+                <span class="detail-value">14/04/2026</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Hora:</span>
+                <span class="detail-value">10:30</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Cantidad:</span>
+                <span class="detail-value">3 entrada(s)</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Total:</span>
+                <span class="detail-value price-total">$45,000 COP</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Estado:</span>
+                <span class="detail-value status-confirmed">CONFIRMADO</span>
+            </div>
+        </div>
+
+        <div class="tickets-section">
+            <h3>🎫 Tus Entradas</h3>
+            <p>Presenta el código QR de cada boleta en la entrada del cine:</p>
+            
+            <div class="ticket-item">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout: fixed;">
+                    <tr>
+                        <td style="padding: 14px 15px; vertical-align: middle; word-break: break-word;">
+                            <div class="ticket-code">CINE-01FMBB3</div>
+                            <div style="margin-top: 5px; color: #555; font-size: 13px;">Asiento: GENERAL-1</div>
+                            <div style="margin-top: 5px; color: #28a745; font-weight: bold; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
+                                ACTIVO
+                            </div>
+                        </td>
+                        <td style="padding: 12px; text-align: center; vertical-align: middle; width: 116px;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=CINE-01FMBB3"
+                                 alt="QR CINE-01FMBB3"
+                                 width="100" height="100"
+                                 style="display: block; margin: 0 auto; border: 2px solid #ddd; border-radius: 6px; max-width: 100%;">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="ticket-item">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout: fixed;">
+                    <tr>
+                        <td style="padding: 14px 15px; vertical-align: middle; word-break: break-word;">
+                            <div class="ticket-code">CINE-9WBNKSS</div>
+                            <div style="margin-top: 5px; color: #555; font-size: 13px;">Asiento: GENERAL-2</div>
+                            <div style="margin-top: 5px; color: #28a745; font-weight: bold; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
+                                ACTIVO
+                            </div>
+                        </td>
+                        <td style="padding: 12px; text-align: center; vertical-align: middle; width: 116px;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=CINE-9WBNKSS"
+                                 alt="QR CINE-9WBNKSS"
+                                 width="100" height="100"
+                                 style="display: block; margin: 0 auto; border: 2px solid #ddd; border-radius: 6px; max-width: 100%;">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="ticket-item">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout: fixed;">
+                    <tr>
+                        <td style="padding: 14px 15px; vertical-align: middle; word-break: break-word;">
+                            <div class="ticket-code">CINE-57RQL2U</div>
+                            <div style="margin-top: 5px; color: #555; font-size: 13px;">Asiento: GENERAL-3</div>
+                            <div style="margin-top: 5px; color: #28a745; font-weight: bold; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
+                                ACTIVO
+                            </div>
+                        </td>
+                        <td style="padding: 12px; text-align: center; vertical-align: middle; width: 116px;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=CINE-57RQL2U"
+                                 alt="QR CINE-57RQL2U"
+                                 width="100" height="100"
+                                 style="display: block; margin: 0 auto; border: 2px solid #ddd; border-radius: 6px; max-width: 100%;">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+
+        <div class="payment-info">
+            <h3>💳 Información de Pago</h3>
+            <div class="detail-item">
+                <span class="detail-label">Tarjeta:</span>
+                <span class="detail-value">**** **** **** 1234</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Transacción:</span>
+                <span class="detail-value">TXN-TEST-123456</span>
+            </div>
+        </div>
+
+
+        <div class="highlight">
+            <h4>📋 Instrucciones Importantes:</h4>
+            <ul>
+                <li>Llega al menos <strong>30 minutos antes</strong> del inicio de la función</li>
+                <li>Dirígete al <strong>Cine Colombia Centro</strong> en Bogotá, Colombia</li>
+                <li>Presenta tus códigos de entrada en la taquilla del cine</li>
+                <li>Los códigos son <strong>únicos y no transferibles</strong></li>
+                <li>Conserva este email como comprobante de compra</li>
+                <li>En caso de cancelación, contacta nuestro soporte</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="#"
+               style="background-color: #2575fc;
+              color: white;
+              padding: 15px 30px;
+              text-decoration: none;
+              border-radius: 6px;
+              font-weight: bold;
+              font-size: 16px;
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              display: inline-block;
+              text-align: center;">
+                Ver mis reservas
+            </a>
+        </div>
+        <p>Si tienes alguna pregunta, no dudes en contactarnos en <a href="mailto:support@cinema.com">support@cinema.com</a></p>
+
+        <p><strong>¡Disfruta de la película! 🍿</strong></p>
+
+        <p>Atentamente,<br>El equipo de <strong>Cinema Tickets</strong></p>
+    </div>
+
+    <div class="footer">
+        <p><strong>© 2024 Cinema Tickets. Todos los derechos reservados.</strong></p>
+        <p>Este es un mensaje automático, por favor no respondas a esta dirección de correo.</p>
+        <p><small>Si recibiste este correo por error, por favor ignóralo.</small></p>
+        <p>
+            <a href="mailto:support@cinema.com">Soporte</a> |
+            <a href="#">Política de Privacidad</a> |
+            <a href="#">Términos de Servicio</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

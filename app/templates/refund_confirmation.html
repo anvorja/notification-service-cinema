@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Reembolso - Cinema Tickets</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 8px 0 0;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px 40px;
+        }
+        .greeting {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .intro {
+            color: #555;
+            margin-bottom: 24px;
+        }
+        .refund-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .refund-box .amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: #b45309;
+        }
+        .refund-box .label {
+            font-size: 13px;
+            color: #78350f;
+            margin-top: 4px;
+        }
+        .detail-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+        }
+        .detail-table td {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        .detail-table td:first-child {
+            color: #888;
+            width: 40%;
+        }
+        .detail-table td:last-child {
+            font-weight: 600;
+            text-align: right;
+        }
+        .status-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #b45309;
+            border: 1px solid #f59e0b;
+            border-radius: 20px;
+            padding: 3px 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .notice {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 14px 18px;
+            font-size: 13px;
+            color: #166534;
+            margin-bottom: 24px;
+        }
+        .footer {
+            background: #1e1b4b;
+            color: #9ca3af;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+        .footer a {
+            color: #a5b4fc;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🔄 Reembolso Procesado</h1>
+        <p>Tu cancelación fue exitosa</p>
+    </div>
+
+    <div class="content">
+        <p class="greeting">Hola, {{ customer_name }}</p>
+        <p class="intro">
+            Hemos procesado exitosamente la cancelación y el reembolso de tu compra
+            <strong>#{{ order_id }}</strong> para la película <strong>{{ movie_title }}</strong>.
+        </p>
+
+        <div class="refund-box">
+            <div class="amount">{{ total_amount }}</div>
+            <div class="label">Monto reembolsado</div>
+        </div>
+
+        <table class="detail-table">
+            <tr>
+                <td>Película</td>
+                <td>{{ movie_title }}</td>
+            </tr>
+            <tr>
+                <td>Boletas canceladas</td>
+                <td>{{ quantity }}</td>
+            </tr>
+            <tr>
+                <td>ID de transacción</td>
+                <td>{{ transaction_id }}</td>
+            </tr>
+            <tr>
+                <td>ID de reembolso</td>
+                <td>{{ refund_id }}</td>
+            </tr>
+            <tr>
+                <td>Fecha de cancelación</td>
+                <td>{{ cancel_date }}</td>
+            </tr>
+            <tr>
+                <td>Estado</td>
+                <td><span class="status-badge">REEMBOLSADO</span></td>
+            </tr>
+        </table>
+
+        <div class="notice">
+            💳 El reembolso puede tardar entre <strong>3 y 10 días hábiles</strong> en reflejarse
+            en tu cuenta, dependiendo de tu banco o método de pago.
+        </div>
+
+        <p style="color: #555; font-size: 14px;">
+            Si tienes preguntas sobre tu reembolso, contáctanos en
+            <a href="mailto:{{ support_email }}" style="color: #7c3aed;">{{ support_email }}</a>.
+        </p>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 Cinema Tickets · Todos los derechos reservados</p>
+        <p><a href="mailto:{{ support_email }}">{{ support_email }}</a></p>
+    </div>
+</div>
+</body>
+</html>
