@@ -16,7 +16,7 @@ from app.services.email_service import (
 
 logger = logging.getLogger(__name__)
 
-TOPICS = ["payment.success", "order.refunded", "auth.password_reset_requested"]
+TOPICS = ["purchase.confirmed", "order.refunded", "auth.password_reset_requested"]
 
 # How long to wait before restarting the consumer after a failure
 _RESTART_DELAY_SECONDS = 10
@@ -61,7 +61,7 @@ async def _run_consumer() -> None:
             )
 
             try:
-                if topic == "payment.success":
+                if topic == "purchase.confirmed":
                     success = await send_purchase_confirmation(payload)
                     if success:
                         logger.info("Confirmation email sent | order_id=%s", order_id)
