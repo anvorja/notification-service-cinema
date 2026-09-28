@@ -19,7 +19,6 @@ Uso:
 
 import argparse
 import os
-import sys
 import webbrowser
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
@@ -136,10 +135,10 @@ def main() -> None:
     print("\n Resumen del diagnóstico:")
     print(f"   - HTML tiene {qr_url_count} QRs generados")
     print(f"   - Si el navegador muestra {len(MOCK_TICKETS)} QRs → el template está OK, el problema es de transporte/cliente de correo")
-    print(f"   - Si el navegador solo muestra 1 QR → el problema es del template HTML o CSS")
+    print("   - Si el navegador solo muestra 1 QR → el problema es del template HTML o CSS")
     if args.to:
         print(f"   - Si el correo recibido muestra {len(MOCK_TICKETS)} QRs → problema resuelto")
-        print(f"   - Si el correo recibido muestra solo 1 QR → problema del cliente de correo (Gmail)")
+        print("   - Si el correo recibido muestra solo 1 QR → problema del cliente de correo (Gmail)")
 
 
 if __name__ == "__main__":
